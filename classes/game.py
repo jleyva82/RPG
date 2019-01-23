@@ -78,6 +78,15 @@ class Person:                                              #class for person / u
             print("    " + str(i) + ".", item["item"].name, ":", item["item"].description, "(x" + str(item["quantity"]) + ')')
             i += 1
 
+    def choose_target(self, enemies):
+        i = 1
+        print("\n" + bcolors.FAIL + bcolors.BOLD + "    TARGET:" + bcolors.ENDC)
+        for enemy in enemies:
+            print("        " + str(i) + ".", enemy.name)
+            i += 1
+        choice = int(input("    Choose target:")) - 1
+        return choice
+
     def get_enemy_stats(self):
         hp_bar = ''
         bar_ticks = (self.hp / self.maxhp) * 100 / 5
@@ -90,13 +99,13 @@ class Person:                                              #class for person / u
             bar_ticks -= 1
 
         while len(hp_bar) < 20:
-            hp_bar += " "
+            hp_bar += "_"
 
         while mp_ticks > 0:
             mp_bar += "█"
             mp_ticks -= 1
         while len(mp_bar) < 1:
-            mp_bar += " "
+            mp_bar += "_"
 
         hp_string = str(self.hp) + '/' + str(self.maxhp)
         current_hp = ""
@@ -123,7 +132,6 @@ class Person:                                              #class for person / u
         else:
             current_mp = mp_string
 
-        print("                      _______________________________            ___________")
         print(bcolors.BOLD + self.name + '    ' +
               hp_string + " |" + bcolors.FAIL + hp_bar + bcolors.ENDC + bcolors.BOLD
               + "|   " +
@@ -140,13 +148,13 @@ class Person:                                              #class for person / u
             bar_ticks -= 1
 
         while len(hp_bar) < 20:
-            hp_bar += " "
+            hp_bar += "_"
 
         while mp_ticks > 0:
             mp_bar += "█"
             mp_ticks -= 1
         while len(mp_bar) < 1:
-            mp_bar += " "
+            mp_bar += "_"
 
 
         hp_string = str(self.hp) + '/' + str(self.maxhp)
@@ -174,7 +182,6 @@ class Person:                                              #class for person / u
         else:
             current_mp = mp_string
 
-        print("                      _______________________________            ________")
         print(bcolors.BOLD + self.name + '    ' +
               hp_string + "   |" + bcolors.OKGREEN + hp_bar + bcolors.ENDC + bcolors.BOLD
               + "|   " +
