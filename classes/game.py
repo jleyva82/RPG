@@ -1,5 +1,5 @@
 import random                                              #for use with .randrange(,)
-from .magic import Spell
+from classes.magic import Spell
 
 
 class bcolors:                                             #classes for different lettering
@@ -14,7 +14,7 @@ class bcolors:                                             #classes for differen
 
 
 class Person:                                              #class for person / unit
-    def __init__(self,name, hp, mp, atk, df, magic, items):            #set commands for each input stanciated in object call out
+    def __init__(self,name, hp, mp, atk, df, magic, items):   #set commands for each input stanciated in object call out
         self.maxhp = hp
         self.hp = hp
         self.maxmp = mp
@@ -75,15 +75,17 @@ class Person:                                              #class for person / u
         i = 1
         print('\n' + bcolors.OKGREEN + bcolors.BOLD + "ITEMS:" + bcolors.ENDC)
         for item in self.items:
-            print("    " + str(i) + ".", item["item"].name, ":", item["item"].description, "(x" + str(item["quantity"]) + ')')
+            print("    " + str(i) + ".", item["item"].name, ":", item["item"].description,
+                  "(x" + str(item["quantity"]) + ')')
             i += 1
 
     def choose_target(self, enemies):
         i = 1
         print("\n" + bcolors.FAIL + bcolors.BOLD + "    TARGET:" + bcolors.ENDC)
         for enemy in enemies:
-            print("        " + str(i) + ".", enemy.name)
-            i += 1
+            if enemy.get_hp() != 0:
+                print("        " + str(i) + ".", enemy.name)
+                i += 1
         choice = int(input("    Choose target:")) - 1
         return choice
 
